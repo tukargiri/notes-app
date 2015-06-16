@@ -1,16 +1,16 @@
 /*var databaseUrl = "diarydb";
-var collections = ["notes"];
-*/
+ 
+ */
 var mongoClient = require('mongodb').MongoClient;
+var COLLECTION_NAME = "notes";
 
 // Connection URL
 var url = 'mongodb://localhost:27017/diarydb';
-var db, notesCollection;
+var notesCollection;
 // Use connect method to connect to the Server
 mongoClient.connect(url, function (err, db) {
 	console.log("Connected to mongo server");
-	db = db;
-	notesCollection = db.collection("notes");
+	notesCollection = db.collection(COLLECTION_NAME);
 	// db.close();
 });
 // var db = require("mongodb").connect(databaseUrl, collections);
@@ -27,7 +27,6 @@ var mongoInterface = {
 				callback(data);
 			}
 		});
-		return db;
 	},
 	insert: function (data, callback) {
 		notesCollection.insert(data, function (err, result) {
