@@ -2,19 +2,16 @@
 
 var http = require("http");
 var PORT = 8989;
-var routeHandler = require("./routeHandler");
+var router = require("./router");
 // var path = require("path");
 // var fs = require("fs");
 // var qs = require('querystring');
 var server = http.createServer(connectionHandler);
 
 function connectionHandler(request, response) {
-    /*console.log("inside connectionHandler request.url = ", request.url);
-    console.log("inside connectionHandler request.pathname = ", request.pathname);*/
-
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Content-Type", "application/json");
-    routeHandler.processRequest(request, response);
+    router.processRequest(request, response);
 }
 
 /*function connectionHandler(request, response) {
