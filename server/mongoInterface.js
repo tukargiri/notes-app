@@ -43,7 +43,7 @@ var RESPONSE = {
 		504: "DB Error 504 :- cannot update given record"
 	}
 };
-
+// This response format will be constant for any kind of request
 var resposeObj = {
 	type: "",
 	message: "",
@@ -70,7 +70,7 @@ var mongoInterface = {
 			if (err) {
 				resposeObj.type = RESPONSE.ERROR;
 				resposeObj.message = RESPONSE.ERROR_CODES[501];
-
+				resposeObj.items = [];
 			} else {
 				resposeObj.type = RESPONSE.SUCCESS;
 				resposeObj.message = RESPONSE.SUCCESS_CODES.FIND;

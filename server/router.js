@@ -40,10 +40,10 @@ var router = {
 				mongoInterface.update(formData, modifyDataCallback.bind(null, response));
 			});
 		} else {
-			response.writeHead(500, {
-				'Content-Type': 'text/html'
-			});
-			modifyDataCallback(null, null, {
+			/*response.writeHead(500, {
+				'Content-Type': 'application/json'
+			});*/
+			modifyDataCallback(null, {
 				message: "Invalid request",
 				type: "error",
 				items: []
