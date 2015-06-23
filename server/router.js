@@ -3,47 +3,64 @@
 var mongoInterface = require("./mongoInterface");
 var url = require("url");
 
-function modifyDataCallback(response, responseObj) {
-	response.end(JSON.stringify(responseObj));
-}
+var _requestHandler = {
+	handleGETRequest: function (request, response) {
+		var urlParts, query;
+		if (request.url.indexOf("/fetchData") >= 0) {
+			urlParts = url.parse(request.url, true);
+			query = urlParts.query;
+			mongoInterface.find(query, this.dbResponseHandler.bind(null, response));
+		}
+	},
+	handlePOSTRequest: function (request, response) {
+		var requestBody, formData;
+		if (request.url.indexOf("/saveData") >= 0) {
+			request.on('data', function (data) {
+				requestBody += data;
+			});
+			request.on('end', function () {
+				formData = JSON.parse(requestBody);
+				mongoInterface.insert(formData, this.dbResponseHandler.bind(null, response));
+			});
+		}
+	},
+	handleDELETERequest: function (request, response) {
+		var urlParts, params;
+		if (request.url.indexOf("/deleteData") >= 0) {
+			urlParts = url.parse(request.url, true);
+			params = urlParts.path.split("/");
+			mongoInterface.delete(params[2], this.dbResponseHandler.bind(null, response));
+		}
+	},
+	handlePUTRequest: function (request, response) {
+		var requestBody, formData;
+		if (request.url.indexOf("/updateData") >= 0) {
+			request.on('data', function (data) {
+				requestBody += data;
+			});
+			request.on('end', function () {
+				formData = JSON.parse(requestBody);
+				mongoInterface.update(formData, this.dbResponseHandler.bind(null, response));
+			});
+		}
+	},
+	dbResponseHandler: function (response, dbResponseObj) {
+		response.end(JSON.stringify(dbResponseObj));
+	}
+};
 
 var router = {
 	processRequest: function (request, response) {
-		var requestBody = "",
-			urlParts,
-			formData,
-			params,
-			query;
-
-		if (request.method === "GET" && request.url.indexOf("/fetchData") >= 0) {
-			urlParts = url.parse(request.url, true);
-			query = urlParts.query;
-			mongoInterface.find(query, modifyDataCallback.bind(null, response));
-		} else if (request.method === "POST" && request.url.indexOf("/saveData") >= 0) {
-			request.on('data', function (data) {
-				requestBody += data;
-			});
-			request.on('end', function () {
-				formData = JSON.parse(requestBody);
-				mongoInterface.insert(formData, modifyDataCallback.bind(null, response));
-			});
-		} else if (request.method === "DELETE" && request.url.indexOf("/deleteData") >= 0) {
-			urlParts = url.parse(request.url, true);
-			params = urlParts.path.split("/");
-			mongoInterface.delete(params[2], modifyDataCallback.bind(null, response));
-		} else if (request.method === "PUT" && request.url.indexOf("/updateData") >= 0) {
-			request.on('data', function (data) {
-				requestBody += data;
-			});
-			request.on('end', function () {
-				formData = JSON.parse(requestBody);
-				mongoInterface.update(formData, modifyDataCallback.bind(null, response));
-			});
+		if (request.method === "GET") {
+			_requestHandler.handleGETRequest(request, response);
+		} else if (request.method === "POST") {
+			_requestHandler.handlePOSTRequest(request, response);
+		} else if (request.method === "DELETE") {
+			_requestHandler.handleDELETERequest(request, response);
+		} else if (request.method === "PUT") {
+			_requestHandler.handlePUTRequest(request, response);
 		} else {
-			/*response.writeHead(500, {
-				'Content-Type': 'application/json'
-			});*/
-			modifyDataCallback(null, {
+			_requestHandler.dbResponseHandler(null, {
 				message: "Invalid request",
 				type: "error",
 				items: []

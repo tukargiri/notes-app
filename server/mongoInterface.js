@@ -58,6 +58,9 @@ mongoClient.connect(url, function (err, db) {
 
 
 var mongoInterface = {
+	data: {
+		modified: true
+	},
 	find: function (param, callback) {
 		var notesCollection = DB.collection(COLLECTION_NAMES.NOTES),
 			searchParams = {};
@@ -66,6 +69,13 @@ var mongoInterface = {
 			searchParams._id = new ObjectID(searchParams._id);
 		}
 
+		// Can implement caching mechanism here
+		// Check if data is modified
+		/*if (this.data.modified) {
+			// search the collection
+		} else {
+			// return stored data
+		}*/
 		notesCollection.find(searchParams).toArray(function (err, data) {
 			if (err) {
 				resposeObj.type = RESPONSE.ERROR;
