@@ -1,3 +1,17 @@
-<div ng-controller="MainCtrl">
-	This is main html
+<div>
+	<div class="col-md-12">
+		<div class="col-md-6">
+			Search note <input type="text" ng-value="type">
+		</div>
+		<div class="col-md-6 glyphicon">
+			<span class="glyphicon glyphicon-plus" ng-click="addNewNote()"></span>
+		</div>
+
+	</div>
+	<ul class="col-md-12" ng-repeat="note in notes">
+		<li class="col-md-12">
+			<div class="notesTitle">{{note.title}}</div>
+			 <div class="notesData">{{note.data}}</div>
+		</li>
+	</ul>
 </div>

@@ -2,6 +2,7 @@
 
 var mongoInterface = require("./mongoInterface");
 var url = require("url");
+var qs = require('querystring');
 
 var _requestHandler = {
 	handleGETRequest: function (request, response) {
@@ -13,14 +14,18 @@ var _requestHandler = {
 		}
 	},
 	handlePOSTRequest: function (request, response) {
-		var requestBody, formData;
+		var oThis = this,
+			requestBody = "",
+			formData;
 		if (request.url.indexOf("/saveData") >= 0) {
 			request.on('data', function (data) {
 				requestBody += data;
 			});
 			request.on('end', function () {
-				formData = JSON.parse(requestBody);
-				mongoInterface.insert(formData, this.dbResponseHandler.bind(null, response));
+				// formData = JSON.parse(requestBody);
+				formData = qs.parse(requestBody);
+				console.log("formData", formData);
+				mongoInterface.insert(formData, oThis.dbResponseHandler.bind(null, response));
 			});
 		}
 	},
@@ -33,14 +38,16 @@ var _requestHandler = {
 		}
 	},
 	handlePUTRequest: function (request, response) {
-		var requestBody, formData;
+		var oThis = this,
+			requestBody = "",
+			formData;
 		if (request.url.indexOf("/updateData") >= 0) {
 			request.on('data', function (data) {
 				requestBody += data;
 			});
 			request.on('end', function () {
 				formData = JSON.parse(requestBody);
-				mongoInterface.update(formData, this.dbResponseHandler.bind(null, response));
+				mongoInterface.update(formData, oThis.dbResponseHandler.bind(null, response));
 			});
 		}
 	},
@@ -54,6 +61,7 @@ var router = {
 		if (request.method === "GET") {
 			_requestHandler.handleGETRequest(request, response);
 		} else if (request.method === "POST") {
+			// console.log(request, response);
 			_requestHandler.handlePOSTRequest(request, response);
 		} else if (request.method === "DELETE") {
 			_requestHandler.handleDELETERequest(request, response);

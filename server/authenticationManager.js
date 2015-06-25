@@ -5,13 +5,14 @@ var auth = {
 		// The token must be same returned by server during login
 
 		// For curent use case, send authtoken in header of every request, value = "secretToken"
-		var retValue;
+		/*var retValue;
 		if (authToken && authToken === "secretToken") {
 			retValue = true;
 		} else {
 			retValue = false;
 		}
-		return retValue;
+		return retValue;*/
+		return true;
 	}
 };
 
