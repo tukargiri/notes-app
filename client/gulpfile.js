@@ -6,38 +6,26 @@ var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
+var server = require('gulp-server-livereload');
 
-gulp.task('build-prod', function () {
-	return gulp.src('./*.html')
+// This task will minify js and css files for production deployment
+// This task will create a 'build' folder in current directory; directly deploy contents of build
+// Note :- Use this task only for deploying on production
+gulp.task('deploy', function () {
+	return gulp.src('./index.html')
 		.pipe(usemin({
 			css: [minifyCss(), 'concat'],
 			html: [minifyHtml({
-				empty: true
+				quotes: true
 			})],
 			appjs: [uglify(), rev()],
-			js: [uglify(), rev()]
+			libjs: [uglify(), rev()]
 		}))
 		.pipe(gulp.dest('build/'));
 });
 
-// var concat = require('gulp-concat'),
-// 	jsmin = require('gulp-jsmin'),
-// 	rename = require('gulp-rename');
 
-// gulp.task('minify', function () {
-// 	var taskOutput = gulp.src('./scripts/**/*.js')
-// 		.pipe(concat('app.js'))
-// 		.pipe(jsmin())
-// 		.pipe(rename({
-// 			suffix: '.min'
-// 		}))
-// 		.pipe(gulp.dest('./dist/'));
-
-// 	return taskOutput;
-// });
-
-var server = require('gulp-server-livereload');
-
+// This task will create UI server with live reload feature
 gulp.task('server', function () {
 	gulp.src('.')
 		.pipe(server({
