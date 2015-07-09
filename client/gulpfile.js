@@ -8,6 +8,9 @@ var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var server = require('gulp-server-livereload');
 
+// Can change the port accordingly
+var PORT = 8585;
+
 // This task will minify js and css files for production deployment
 // This task will create a 'build' folder in current directory; directly deploy contents of build
 // Note :- Use this task only for deploying on production
@@ -29,7 +32,7 @@ gulp.task('deploy', function () {
 gulp.task('server', function () {
 	gulp.src('.')
 		.pipe(server({
-			port: 8989,
+			port: PORT,
 			livereload: true,
 			defaultFile: './index.html',
 			open: true

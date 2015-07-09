@@ -1,14 +1,13 @@
 "use strict";
 
 var http = require("http");
-var PORT = 8989;
 var router = require("./router");
 var auth = require("./authenticationManager");
-
 var server = http.createServer(connectionHandler);
 
-function connectionHandler(request, response) {
+var PORT = 8989;
 
+function connectionHandler(request, response) {
 	response.setHeader("Access-Control-Allow-Origin", "*");
 	response.setHeader("Access-Control-Allow-Headers", "*");
 	response.setHeader("Content-Type", "application/json");

@@ -22,8 +22,8 @@ var _requestHandler = {
 				requestBody += data;
 			});
 			request.on('end', function () {
-				// formData = JSON.parse(requestBody);
-				formData = qs.parse(requestBody);
+				formData = JSON.parse(requestBody);
+				// formData = qs.parse(requestBody);
 				console.log("formData", formData);
 				mongoInterface.insert(formData, oThis.dbResponseHandler.bind(null, response));
 			});
