@@ -33,7 +33,8 @@ gulp.task('server', function () {
 	gulp.src('.')
 		.pipe(server({
 			port: PORT,
-			livereload: true,
+			livereload: false,
+			// livereload: true,
 			defaultFile: './index.html',
 			open: true
 		}));

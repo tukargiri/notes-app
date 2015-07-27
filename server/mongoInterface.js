@@ -65,9 +65,34 @@ var mongoInterface = {
 		var notesCollection = DB.collection(COLLECTION_NAMES.NOTES),
 			searchParams = {};
 
-		if (Object.keys(param).length && param._id) {
-			searchParams._id = new ObjectID(searchParams._id);
+		// db.notes.find({$or: [{'title': 'title'}, {'data': 'title'}]});
+		// db.notes.find({'title': 'title'});
+		// db.notes.find({"title": { $regex: /^title/i}});
+		// db.notes.find({$or: [{"title": { $regex: /^title/i}}, {"data": { $regex: /^data/i}}]});
+		if (Object.keys(param).length) {
+			if (param._id) {
+				searchParams._id = new ObjectID(searchParams._id);
+			} else {
+				var titleRegEx = new RegExp("^" + param.title, "i");
+				var dataRegEx = new RegExp("^" + param.data, "i");
+				searchParams = {
+					$or: [{
+						"title": {
+							$regex: titleRegEx
+						}
+					}, {
+						"data": {
+							$regex: dataRegEx
+						}
+					}]
+				};
+				/*searchParams = {
+					title: titleRegEx
+				};*/
+			}
 		}
+
+		console.log(searchParams);
 
 		// Can implement caching mechanism here
 		// Check if data is modified
