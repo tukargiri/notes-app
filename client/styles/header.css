@@ -1,0 +1,35 @@
+
+/* Header styles*/
+/* .container header {
+	padding: 10px;
+}
+.container .headerBar {
+	background: #FFF;
+	width: 100%;
+	position: relative;
+}
+.container .homeButton,.container .addNewNoteButton  {
+	font-size: 24px;
+	cursor: pointer;
+
+	color: #FFF;
+    border-radius: 25px;
+    background-color: #F9B24F;
+    padding: 15px;
+}
+.container .headerBar .searchField {
+	border: 1px solid #CCC;
+	height: 30px;
+	width: 90%;
+	padding: 5px;
+}
+.container .headerBar .searchIcon {
+	padding: 5px;
+	font-size: 15px;
+	margin-left: 5px;
+}
+ */
+/*NEWT STYLES*/
+nav.navbar .projectName {
+	color: #F6F6F6;
+}

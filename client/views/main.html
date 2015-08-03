@@ -1,16 +1,16 @@
-<div class="appContainer">
-	<!-- Title of page -->
+<!-- <div class="appContainer">
+	Title of page
 	<div class="appName">
 		NOTES APP
 	</div>
-	<!-- TOP navigation bar -->
+	TOP navigation bar
 	<header class="clearFix">
 		<div class="headerBar">
 			<div class="col-xs-3 centerAlignText">
 				<span class="glyphicon glyphicon-home homeButton"></span>
 			</div>
 			<div class="col-xs-6">
-				<!-- <input type="text" class="searchField leftFloat" ng-model="searchText"> -->
+				<input type="text" class="searchField leftFloat" ng-model="searchText">
 				<input placeholder="Search by title or data" type="text" class="searchField leftFloat" ng-model="searchText" ng-keypress="searchTextChanged($event)">
 				<span class="glyphicon glyphicon-remove clearSearch leftFloat" ng-click="clearSearch()"></span>
 				<span class="glyphicon glyphicon-search searchIcon leftFloat"></span>
@@ -20,12 +20,12 @@
 			</div>
 		</div>
 	</header>
-	<!-- Contents -->
+	Contents
 	<section class="clearFix">
 		<div class="row notesList">
-			<div class="col-md-12" ng-repeat="note in notes">
+			<div ng-repeat="note in notes">
 				<div class="col-md-12 notesRow">
-					<div class="notesTitle">{{note.title}}</div>
+					<div class="notesTitle"><h4>{{note.title}}</h4></div>
 					 <div class="notesData">{{note.data}}</div>
 				</div>
 			</div>
@@ -36,3 +36,45 @@
 		<div class="popUpContents" ng-include="'views/newNote.html'"></div>
 	</div>
 </div>
+ -->
+
+
+ <div class="homePageContainer">
+	<div class="searchContainer col-md-6 centerAlignContents">
+		<!-- <div class="searchWrapper"> -->
+			<input placeholder="Search by title or data" type="text" class="searchField" ng-model="searchText" ng-keypress="searchTextChanged($event)">
+			<span class="glyphicon glyphicon-remove clearSearch" ng-click="clearSearch()"></span>
+			<button class="glyphicon glyphicon-search searchIcon"></button>
+		<!-- </div> -->
+	</div>
+ 	<section class="clearFix">
+ 		<div class="notesListWrapper col-md-6 centerAlignContents">
+			<div class="row notesList">
+				<div ng-repeat="note in notes">
+					<div class="col-md-12 notesRow">
+						<div class="userAction">
+							<span class="edit glyphicon glyphicon-pencil" ng-click="editNote(note)"></span>
+							<span class="delete glyphicon glyphicon-trash" ng-click="deleteNote(note)"></span>
+						</div>
+						<div class="notesTitle"><h4>{{note.title}}</h4></div>
+						<div class="notesData">{{note.data}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="addNewNoteWrapper">
+				<button class="addNewNoteButton" ng-click="addNewNote()">+</button>
+			</div>
+		</div>
+	</section>
+	<!-- Info -->
+	<div class="row basicPadding boldText">
+		<span>{{infoMessage}}</span>
+	</div>
+	<!-- Pop up -->
+ 	<div ng-show="popUpProperties.popUpVisible" ng-model="currentNoteData" class="popUpWrapper">
+ 		<div class="popUpBackground absolutePosition"></div>
+		<div class="popUp">
+			<div class="popUpContents" ng-include="'views/newNote.html'"></div>
+		</div>
+ 	</div>
+ </div>

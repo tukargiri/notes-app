@@ -1,0 +1,42 @@
+/* General properties*/
+.notesAppContainer .leftFloat {
+	float: left;
+}
+.notesAppContainer .rightFloat {
+	float: right;
+}
+.notesAppContainer .centerAlignText {
+	text-align: center;
+}
+.notesAppContainer .clearFix:after {
+   content: " ";
+   display: block;
+   height: 0;
+   clear: both;
+}
+.notesAppContainer .basicPadding {
+	padding: 10px;
+}
+.notesAppContainer .verticalPadding {
+	padding: 10px 0;
+}
+.notesAppContainer .horizontalPadding {
+	padding: 0 10px;
+}
+.notesAppContainer .boldText {
+	font-weight: bold;
+}
+.notesAppContainer .absolutePosition {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
+.notesAppContainer .centerAlignContents {
+	margin: auto;
+	left: 0;
+	right: 0;
+	float: none;
+}

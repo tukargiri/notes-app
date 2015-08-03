@@ -1,0 +1,57 @@
+
+/* POP up style*/
+.notesAppContainer .appContainer {
+	position: relative;
+}
+.notesAppContainer .popUpBackground {
+	width: 100%;
+	height: 100%;
+	background-color: #D1D1D1;
+	opacity: 0.7;
+	z-index: 1;
+}
+.notesAppContainer .popUp {
+    width: 400px;
+    height: 345px;
+    z-index: 2;
+    border: 1px solid #EEE;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-shadow: 0 3px 2px 2px #CCC;
+    background-color: #FFF;
+    padding: 20px;
+}
+.newNotePopup textarea {
+  	width: 300px;
+	height: 100px;
+}
+.newNotePopup .closeButton {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 10px;
+}
+.newNotePopup .popUpLoader {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.7;
+	background-color: #000;
+}
+.newNotePopup .formButton {
+	border: 0;
+    background-color: #FFF;
+    font-weight: bold;
+    color: #FFA500;
+}
+.newNotePopup .formTextField {
+	border: none;
+    border-bottom: 1px solid #CCC;
+    outline: none;
+}

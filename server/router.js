@@ -24,7 +24,7 @@ var _requestHandler = {
 			request.on('end', function () {
 				formData = JSON.parse(requestBody);
 				// formData = qs.parse(requestBody);
-				console.log("formData", formData);
+				// console.log("formData", formData);
 				mongoInterface.insert(formData, oThis.dbResponseHandler.bind(null, response));
 			});
 		}
@@ -67,8 +67,12 @@ var router = {
 			_requestHandler.handleDELETERequest(request, response);
 		} else if (request.method === "PUT") {
 			_requestHandler.handlePUTRequest(request, response);
-		} else {
-			_requestHandler.dbResponseHandler(null, {
+		}
+		/*else if (request.method === "OPTIONS") {
+			response.end(200);
+		}*/
+		else {
+			_requestHandler.dbResponseHandler(response, {
 				message: "Invalid request",
 				type: "error",
 				items: []

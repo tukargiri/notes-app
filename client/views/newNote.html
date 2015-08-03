@@ -1,36 +1,38 @@
-<div ng-controller="NewNoteCtrl" class="newNotePopup container">
+<div ng-controller="NewNoteCtrl" class="newNotePopup">
 	<!-- Close button -->
-	<div class="rightFloat basicPadding closeButton">
+	<!-- <div class="rightFloat basicPadding closeButton">
 		<span class="glyphicon glyphicon-remove" ng-click="closePopUp()"></span>
-	</div>
+	</div> -->
 
 	<!-- Add new note -->
 	<div class="row basicPadding centerAlignText">
 		<span class="boldText">Add New Note</span>
 	</div>
 
+	<!-- <div>{{currentNoteData.title}}</div> -->
+	<!-- <div>{{currentNoteData.data}}</div> -->
 	<!-- Title -->
 	<div class="row verticalPadding">
 		<div class="col-md-12">
 			<div class="boldText"> Title </div>
-			<input type="text" ng-model="title">
+			<input type="text" class="formTextField" ng-model="title">
 		</div>
 	</div>
 	<!-- Data -->
 	<div class="row verticalPadding">
 		<div class="col-md-12">
 			<div class="boldText"> Note </div>
-			<textarea ng-model="data"></textarea>
+			<textarea class="formTextField" ng-model="data"></textarea>
 		</div>
 	</div>
-	<!-- Info -->
-	<div class="row basicPadding boldText">
-		<span>{{infoMessage}}</span>
-	</div>
+
 	<!-- Submit button  -->
 	<div class="row verticalPadding">
 		<div class="col-md-12">
-			<input type="button" value="Save" ng-click="saveNewNote()">
+			<!-- save button -->
+			<input type="button" value="Save" class="formButton" ng-click="saveNewNote()">
+			<!-- Cancel button -->
+			<input type="button" value="Cancel" class="formButton" ng-click="closePopUp()">
 		</div>
 	</div>
 	<!-- loader -->

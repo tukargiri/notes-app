@@ -9,6 +9,7 @@ var PORT = 8989;
 
 function connectionHandler(request, response) {
 	response.setHeader("Access-Control-Allow-Origin", "*");
+	response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
 	response.setHeader("Access-Control-Allow-Headers", "*");
 	response.setHeader("Content-Type", "application/json");
 	// Add auth layer in between, check for valid auth token

@@ -92,7 +92,7 @@ var mongoInterface = {
 			}
 		}
 
-		console.log(searchParams);
+		// console.log(searchParams);
 
 		// Can implement caching mechanism here
 		// Check if data is modified

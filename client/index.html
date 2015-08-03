@@ -2,27 +2,38 @@
 <html>
 <head>
 	<title>notes app</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/bootstrap-theme.min.css">
+
 	<!-- build:css style.css -->
+	<link rel="stylesheet" href="styles/common.css">
 	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/header.css">
+	<link rel="stylesheet" href="styles/popUp.css">
 	<!-- endbuild -->
 </head>
 <body ng-app="notesApp">
-<div class="container">
-    <div ng-view=""></div>
-</div>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- build:libjs lib.js -->
-<script type="text/javascript" src="libs/angular.js"></script>
-<script type="text/javascript" src="libs/angular-route.js"></script>
-<!-- endbuild -->
+	<div ng-include="'views/header.html'"></div>
+	<div class="notesAppContainer container">
+	    <div ng-view=""></div>
+	</div>
 
-<!-- build:appjs app.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controller/MainController.js"></script>
-<script src="scripts/controller/NewNoteController.js"></script>
-<!-- endbuild -->
+	<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+
+	<!-- build:libjs lib.js -->
+	<script type="text/javascript" src="libs/angular.js"></script>
+	<script type="text/javascript" src="libs/angular-route.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:appjs app.js -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/services/ajax.js"></script>
+	<script src="scripts/controller/MainController.js"></script>
+	<script src="scripts/controller/NewNoteController.js"></script>
+	<!-- endbuild -->
 </body>
 </html>

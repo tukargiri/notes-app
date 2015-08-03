@@ -1,148 +1,90 @@
-
-/* General properties*/
-.container .leftFloat {
-	float: left;
-}
-.container .rightFloat {
-	float: right;
-}
-.container .centerAlignText {
-	text-align: center;
-}
-.container .clearFix:after {
-   content: " ";
-   display: block;
-   height: 0;
-   clear: both;
-}
-.container .basicPadding {
-	padding: 10px;
-}
-.container .verticalPadding {
-	padding: 10px 0;
-}
-.container .horizontalPadding {
-	padding: 0 10px;
-}
-.container .boldText {
-	font-weight: bold;
-}
-/* Container properties*/
-.container {
-	margin: 30px 0;
-	width: 100%;
-}
-.container .appName {
-	font-size: 20px;
-	text-align: center;
-}
-/* Header styles*/
-.container header {
-	padding: 10px;
-}
-.container .headerBar {
-	background: #FFF;
-	width: 100%;
-	position: relative;
-}
-.container .homeButton,.container .addNewNoteButton  {
-	font-size: 24px;
-	cursor: pointer;
-}
-.container .headerBar .searchField {
-	border: 1px solid #CCC;
-	height: 30px;
-	width: 90%;
-	padding: 5px;
-}
-.container .headerBar .searchIcon {
-	padding: 5px;
-	font-size: 15px;
-	margin-left: 5px;
-}
-
-/* Content styles*/
-.container section {
+body {
 	background-color: #EEE;
-	padding: 10px;
 }
-.container .notesRow {
+.notesAppContainer {
+	margin-top: 50px;
+}
+.notesAppContainer .notesRow {
+	position: relative;
 	padding: 10px;
 	background-color: white;
-	box-shadow: 0 3px 2px 2px #CCC;
-	border-radius: 5px;
-	margin: 10px 0;
+	border-bottom: 1px solid #EEE;
 }
-.container .notesRow .notesTitle {
+.notesAppContainer .notesRow .notesTitle {
 	font-weight: bold;
 	font-size: 15px;
 	padding: 5px;
-	border-bottom: 1px solid #EEE;
 }
-.container .notesRow .notesData {
+.notesAppContainer .notesRow .notesData {
 	height: 50px;
 	padding: 5px;
 }
-.container .notesList {
-	height: 400px;
-	overflow-y: auto;
-}
-.container .clearSearch {
-	right: 20px;
-	top: 8px;
-	cursor: pointer;
-}
-
-/* POP up style*/
-.container .appContainer {
+.notesAppContainer .notesListWrapper {
 	position: relative;
 }
-.container .popUpContainer {
-	width: 100%;
-	height: 100%;
-	background-color: #D1D1D1;
-	opacity: 0.7;
-	z-index: 1;
+.notesAppContainer .notesList {
+	height: 300px;
+    overflow-y: auto;
+    float: none;
+    border: 1px solid #D8D8D8;
+    background-color: #FFF;
 }
-.container .popUp {
-	width: 80%;
-	height: 370px;
-	z-index: 2;
-	border: 1px solid #EEE;
+.notesAppContainer .searchContainer {
+	float: none;
+	padding: 10px 0;
+}
+
+.notesAppContainer .searchField {
+	border: 1px solid #CCC;
+	height: 40px;
+	width: 520px;
+	padding: 5px;
+}
+.notesAppContainer .searchIcon {
+    width: 42px;
+    height: 42px;
+	padding: 5px;
+	font-size: 15px;
+	background-color: #0AF;
+    margin-left: 20px;
+    border: 1px solid #EEE;
+    color: #FFF;
+}
+.notesAppContainer .clearSearch {
+	margin-left: -35px;
+    border: 0;
+    background-color: #FFF;
+    padding: 0;
+}
+
+.notesAppContainer .addNewNoteButton {
+	width: 40px;
+    height: 40px;
+	font-size: 30px;
+    cursor: pointer;
+    color: #FFF;
+    border: 0;
+    border-radius: 20px;
+    background-color: #F9B24F;
+    padding: 0;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 2px 2px rgba(179, 179, 179, 0.4);
+}
+.notesAppContainer .addNewNoteWrapper {
 	position: absolute;
-	top: 0;
 	bottom: 0;
-	left: 0;
 	right: 0;
-	margin: auto;
-	box-shadow: 0 3px 2px 2px #CCC;
-	border-radius: 5px;
-	background-color: #FFFFF2;
 }
-.newNotePopup textarea {
-  	width: 300px;
-	height: 100px;
-}
-.newNotePopup .closeButton {
+
+.notesAppContainer .userAction {
 	position: absolute;
-	top: 0;
 	right: 0;
+	top: 0;
 	margin-right: 10px;
+    padding: 10px;
 }
-.newNotePopup .popUpLoader {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	opacity: 0.7;
-	background-color: #000;
-}
-.absolutePosition {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	margin: auto;
+.notesAppContainer .userAction .edit,
+.notesAppContainer .userAction .delete {
+	padding: 0 5px;
 }
